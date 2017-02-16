@@ -1,6 +1,0 @@
-framework module Pods_SH_CurrencyTests {
-  umbrella header "Pods-SH-CurrencyTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
