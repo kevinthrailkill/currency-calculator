@@ -11,15 +11,14 @@ import UIKit
 class CurrencyTableViewController: UITableViewController {
 
     
-    var currentCurrency : CurrencyRates?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.getCurrencyFromFixer(base: "USD")
         
-       
-        
+        CurrencyDataSource.sharedInstance.getCurrencyFromFixer(base: "USD") {
+            print("Got to callback")
+            self.tableView.reloadData()
+        }
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -29,18 +28,7 @@ class CurrencyTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    func getCurrencyFromFixer(base: String){
-        AFCurrencyWrapper.requestGETURL(base, success: {
-            (CurrencyRates) -> Void in
-            
-            self.currentCurrency = CurrencyRates
-            self.tableView.reloadData()
-            print(CurrencyRates)
-        }) {
-            (error) -> Void in
-            print(error)
-        }
-    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -57,27 +45,22 @@ class CurrencyTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        if(self.currentCurrency != nil){
-            print("Got Here 2")
-            
-            return self.currentCurrency!.getcurrencyRatesCount()
-            
-        }
-        
-        print("Got Here")
-        return 0
+        return CurrencyDataSource.sharedInstance.getCurrencyCount()
         
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "currencyCell", for: indexPath)
 
         
-        let myRowKey = self.currentCurrency!.currencyList[indexPath.row] //the dictionary key
+        let myRowKey = CurrencyDataSource.sharedInstance.getCurrencyList()[indexPath.row] //the dictionary key
         cell.textLabel?.text = myRowKey
-        let myRowData = self.currentCurrency!.getcurrencyRates()[myRowKey]! //the dictionary value
+        let myRowData = CurrencyDataSource.sharedInstance.getCurrencyRates()[myRowKey]! //the dictionary value
         cell.detailTextLabel?.text = String(describing: myRowData)
+        
         
         // Configure the cell...
 
