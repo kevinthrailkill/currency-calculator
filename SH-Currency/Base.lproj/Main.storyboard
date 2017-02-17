@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -53,6 +54,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xwe-bX-tlZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-487.19999999999999" y="29.23538230884558"/>
+        </scene>
+        <!--Currency Changer Popup View Controller-->
+        <scene sceneID="fUs-hs-ubb">
+            <objects>
+                <viewController storyboardIdentifier="sbPopUpID" id="RbZ-tL-3DC" customClass="CurrencyChangerPopupViewController" customModule="SH_Currency" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JPI-mA-CUJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="ykR-qI-xg4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HFI-eS-1m7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sFc-dW-lv9">
+                                <rect key="frame" x="54" y="63" width="266" height="414"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a pop up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xlv-tK-gwi">
+                                        <rect key="frame" x="51" y="58" width="121" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IfA-Gf-GTS">
+                                        <rect key="frame" x="91" y="183" width="39" height="30"/>
+                                        <state key="normal" title="Close">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="closePopup:" destination="RbZ-tL-3DC" eventType="touchUpInside" id="DLL-AC-ABT"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.97647058819999999" green="0.21960784310000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Xlv-tK-gwi" firstAttribute="top" secondItem="sFc-dW-lv9" secondAttribute="top" constant="58" id="01L-1R-Y06"/>
+                                    <constraint firstItem="Xlv-tK-gwi" firstAttribute="leading" secondItem="sFc-dW-lv9" secondAttribute="leading" constant="51" id="05C-78-e5N"/>
+                                    <constraint firstItem="IfA-Gf-GTS" firstAttribute="top" secondItem="sFc-dW-lv9" secondAttribute="top" constant="183" id="ceR-w6-T3U"/>
+                                    <constraint firstItem="IfA-Gf-GTS" firstAttribute="leading" secondItem="sFc-dW-lv9" secondAttribute="leading" constant="91" id="on8-Bn-jbF"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="sFc-dW-lv9" firstAttribute="centerX" secondItem="HFI-eS-1m7" secondAttribute="centerX" id="UAt-dH-W4l"/>
+                            <constraint firstItem="sFc-dW-lv9" firstAttribute="leading" secondItem="HFI-eS-1m7" secondAttribute="leadingMargin" constant="38" id="rvV-3a-2AQ"/>
+                            <constraint firstItem="sFc-dW-lv9" firstAttribute="top" secondItem="JPI-mA-CUJ" secondAttribute="bottom" constant="43" id="vaf-S9-Cvh"/>
+                            <constraint firstItem="ykR-qI-xg4" firstAttribute="top" secondItem="sFc-dW-lv9" secondAttribute="bottom" constant="190" id="xg7-51-6rH"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="073-gS-sgb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="288.80000000000001" y="28.335832083958024"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XX2-bD-5tU">
