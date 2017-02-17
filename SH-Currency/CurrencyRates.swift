@@ -32,13 +32,9 @@ class CurrencyRates: NSObject {
         self.currencyRates = [String:NSNumber]()
         
         for item in result["rates"].dictionaryValue {
-            
-            print(item)
             let value = item.value.numberValue
             self.currencyRates?[item.key] = value
-            
         }
-        
     }
     
     func getCurrencyList() -> [String] {
@@ -54,16 +50,7 @@ class CurrencyRates: NSObject {
     }
     
     func getcurrencyRatesCount() -> Int {
-        
-        
         return self.currencyRates!.count
-        
-//        if let currencyCount = self.currencyRates?.count {
-//            return currencyCount
-//        } else {
-//            return 0
-//        }
-        
     }
     
     

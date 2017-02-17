@@ -7,6 +7,7 @@ target 'SH-Currency' do
   # Pods for SH-Currency
   pod 'Alamofire', '~> 4.3'
   pod 'SwiftyJSON'
+  pod 'SVProgressHUD'   
 
   target 'SH-CurrencyTests' do
     inherit! :search_paths

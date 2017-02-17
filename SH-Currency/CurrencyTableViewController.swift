@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class CurrencyTableViewController: UITableViewController {
 
@@ -14,10 +15,11 @@ class CurrencyTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        SVProgressHUD.show(withStatus: "Getting Currency Data")
         CurrencyDataSource.sharedInstance.getCurrencyFromFixer(base: "USD") {
             print("Got to callback")
             self.tableView.reloadData()
+            SVProgressHUD.dismiss()
         }
         
         
