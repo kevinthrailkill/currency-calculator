@@ -16,6 +16,11 @@ class CurrencyRates: NSObject {
     private var baseCurrency: String?
     private var currencyRates: Dictionary<String, NSNumber>?
     
+    var currencyList:[String] {
+        get{
+            return [String](currencyRates!.keys)
+        }
+    }
     
     
     /// Parses the Swifty JSON and creates a new Currency Rate Object
@@ -43,6 +48,17 @@ class CurrencyRates: NSObject {
     
     func getcurrencyRates() -> Dictionary<String, NSNumber> {
         return self.currencyRates!
+    }
+    
+    func getcurrencyRatesCount() -> Int {
+        
+        if let currencyCount = self.currencyRates?.count {
+            return currencyCount
+        } else {
+            return 0
+        }
+        
+
     }
     
     

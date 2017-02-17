@@ -29,7 +29,6 @@ class AFCurrencyWrapper: NSObject {
         
         
         let fixerURL : String = "http://api.fixer.io/latest?base=" + baseCur
-
         
         Alamofire.request(fixerURL).responseJSON { (responseObject) -> Void in
             
