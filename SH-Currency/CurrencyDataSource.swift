@@ -12,6 +12,7 @@ class CurrencyDataSource: NSObject {
     
     
     private var currentCurrency : CurrencyRates?
+    private var selectedCurrency : Dictionary<String, NSNumber>?
     
     static let sharedInstance : CurrencyDataSource = {
         let instance = CurrencyDataSource()
@@ -63,6 +64,43 @@ class CurrencyDataSource: NSObject {
             return currentCurrency!.getBaseCurrency()
         }
         return ""
+    }
+    
+    func getSelectedCurrency() -> Dictionary<String, NSNumber> {
+        if(selectedCurrency != nil){
+            return selectedCurrency!
+        }
+        return [String: NSNumber]()
+    }
+    
+    func setSelectedCurrency(key: String, value: NSNumber) {
+        selectedCurrency = [String: NSNumber]()
+        selectedCurrency![key] = value
+    }
+    
+    func calulateExchange(exchangeAmount: String, completion: @escaping (_ result: String)-> Void){
+        
+        var selectedValue : NSNumber?
+        
+        for (_, value) in getSelectedCurrency() {
+            selectedValue = value
+            break
+        }
+        
+        
+        var myNumber : NSNumber?
+        
+        if let myDouble = Double(exchangeAmount) {
+            myNumber = NSNumber(value: myDouble)
+            let exchanged = CurrencyCalculations.getCurrencyAmount(baseCur: myNumber!, selectedCur:selectedValue!)
+            
+            completion(String(format: "%10.2f", exchanged.floatValue))
+        }
+        
+        
+        
+        
+        
     }
 
 

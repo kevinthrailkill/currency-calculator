@@ -12,21 +12,23 @@ import SVProgressHUD
 class CurrencyTableViewController: UITableViewController {
 
     let currencyDataController = CurrencyDataSource.sharedInstance
-    
+    private var viewHasBeenSet = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
     
-
     override func viewDidAppear(_ animated: Bool){
         super.viewDidAppear(animated)
-        
-        showCurrencyPopup()
-        
+        if (!self.viewHasBeenSet) {
+            // Perform whatever code you'd like to perform
+            // the first time viewDidAppear is called
+            
+            showCurrencyPopup()
+            self.viewHasBeenSet = true;
+        }
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -53,17 +55,12 @@ class CurrencyTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        
         return currencyDataController.getCurrencyCount()
-        
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -74,12 +71,19 @@ class CurrencyTableViewController: UITableViewController {
         let myRowKey = currencyDataController.getCurrencyList()[indexPath.row] //the dictionary key
         cell.textLabel?.text = myRowKey
         let myRowData = currencyDataController.getCurrencyRates()[myRowKey]! //the dictionary value
-        cell.detailTextLabel?.text = String(describing: myRowData)
+        cell.detailTextLabel?.text = String(format: "%10.2f", myRowData.floatValue)
         
-        
-        // Configure the cell...
-
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt
+        indexPath: IndexPath){
+        
+        let myRowKey = currencyDataController.getCurrencyList()[indexPath.row]
+        let myRowData = currencyDataController.getCurrencyRates()[myRowKey]!
+        currencyDataController.setSelectedCurrency(key: myRowKey, value: myRowData)
+        
+        
     }
     
 
