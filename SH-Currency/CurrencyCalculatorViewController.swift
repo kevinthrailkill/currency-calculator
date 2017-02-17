@@ -15,19 +15,17 @@ class CurrencyCalculatorViewController: UIViewController {
     
     @IBOutlet weak var selectedCurrencyTextField: UITextField!
     @IBOutlet weak var baseCurrencyTextField: UITextField!
-    
     @IBOutlet weak var baseLabel: UILabel!
-    
     @IBOutlet weak var selectedLabel: UILabel!
     
     @IBAction func baseTextFieldDidChange(_ sender: UITextField) {
         
-        print(sender.text!)
-        
+        //reset selected currency textfield to 0.00 if nothing in base text field
         if(sender.text!.characters.count == 0){
             self.selectedCurrencyTextField.text = "0.00"
         }
         
+        //Get exchange amount last character in string isnt a period
         if sender.text!.characters.last != "." {
             currencyDataController.calulateExchange(exchangeAmount: sender.text!) {
                 (result: String) in
@@ -38,7 +36,19 @@ class CurrencyCalculatorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpTextFields()
         
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    
+    /// Sets up the text field and labels on initial display
+    private func setUpTextFields(){
         //set up the textfields and labels
         baseCurrencyTextField.becomeFirstResponder()
         baseCurrencyTextField.delegate = self
@@ -50,12 +60,6 @@ class CurrencyCalculatorViewController: UIViewController {
             selectedLabel.text = key
             break
         }
-        
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
@@ -71,8 +75,11 @@ class CurrencyCalculatorViewController: UIViewController {
     
 }
 
+// MARK: - UITextFieldDelegate
+
 extension CurrencyCalculatorViewController : UITextFieldDelegate {
     
+    // Function used to only allow one period in textfield at a time
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         let existingTextHasDecimalSeparator = textField.text?.range(of: ".")

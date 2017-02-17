@@ -38,6 +38,33 @@ class CurrencyDataSource: NSObject {
         }
     }
     
+    /// Calls the currency calculations class to get the exchange rate
+    ///
+    /// - Parameters:
+    ///   - exchangeAmount: how much base currency to get rate for
+    ///   - completion: after completion, return amount string
+    func calulateExchange(exchangeAmount: String, completion: @escaping (_ result: String)-> Void){
+        
+        var selectedValue : NSNumber?
+        
+        for (_, value) in getSelectedCurrency() {
+            selectedValue = value
+            break
+        }
+        
+        var myNumber : NSNumber?
+        
+        if let myDouble = Double(exchangeAmount) {
+            myNumber = NSNumber(value: myDouble)
+            let exchanged = CurrencyCalculations.getCurrencyAmount(baseCur: myNumber!, selectedCur:selectedValue!)
+            
+            completion(String(format: "%10.2f", exchanged.floatValue))
+        }
+    }
+    
+    
+    // MARK: - Class getters and setters for the Currency Rates Object
+    
     func getCurrencyCount() -> Int {
         if(currentCurrency != nil){
             return currentCurrency!.getcurrencyRatesCount()
@@ -78,30 +105,7 @@ class CurrencyDataSource: NSObject {
         selectedCurrency![key] = value
     }
     
-    func calulateExchange(exchangeAmount: String, completion: @escaping (_ result: String)-> Void){
-        
-        var selectedValue : NSNumber?
-        
-        for (_, value) in getSelectedCurrency() {
-            selectedValue = value
-            break
-        }
-        
-        
-        var myNumber : NSNumber?
-        
-        if let myDouble = Double(exchangeAmount) {
-            myNumber = NSNumber(value: myDouble)
-            let exchanged = CurrencyCalculations.getCurrencyAmount(baseCur: myNumber!, selectedCur:selectedValue!)
-            
-            completion(String(format: "%10.2f", exchanged.floatValue))
-        }
-        
-        
-        
-        
-        
-    }
-
-
+    
+    
+    
 }

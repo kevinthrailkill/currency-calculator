@@ -10,6 +10,7 @@ import UIKit
 
 
 
+/// Choose Currency Protocol used for updating the base currency
 protocol ChooseCurrencyProtocol : NSObjectProtocol {
     func updateCurrency(currency: String)
     
@@ -33,10 +34,8 @@ class CurrencyChangerPopupViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        
         self.showAnimate()
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,6 +43,8 @@ class CurrencyChangerPopupViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+
+    // MARK: - Animations for adding and removing the popup
     
     func showAnimate()
     {
@@ -67,18 +68,6 @@ class CurrencyChangerPopupViewController: UIViewController {
             }
         });
     }
-
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

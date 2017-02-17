@@ -22,7 +22,6 @@ class CurrencyRates: NSObject {
         }
     }
     
-    
     /// Parses the Swifty JSON and creates a new Currency Rate Object
     ///
     /// - Parameter result: json input from GET Call
@@ -36,6 +35,9 @@ class CurrencyRates: NSObject {
             self.currencyRates?[item.key] = value
         }
     }
+    
+    
+    // MARK: - Class getters
     
     func getCurrencyList() -> [String] {
         return self.currencyList
