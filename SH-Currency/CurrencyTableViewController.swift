@@ -11,22 +11,11 @@ import SVProgressHUD
 
 class CurrencyTableViewController: UITableViewController {
 
+    let currencyDataController = CurrencyDataSource.sharedInstance
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SVProgressHUD.show(withStatus: "Getting Currency Data")
-        CurrencyDataSource.sharedInstance.getCurrencyFromFixer(base: "USD") {
-            print("Got to callback")
-            self.tableView.reloadData()
-            SVProgressHUD.dismiss()
-        }
-        
-        let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sbPopUpID") as! CurrencyChangerPopupViewController
-        self.addChildViewController(popOverVC)
-        popOverVC.view.frame = self.view.frame
-        self.view.addSubview(popOverVC.view)
-        popOverVC.didMove(toParentViewController: self)
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -37,11 +26,30 @@ class CurrencyTableViewController: UITableViewController {
     }
     
 
+    override func viewDidAppear(_ animated: Bool){
+        super.viewDidAppear(animated)
+        
+        showCurrencyPopup()
+        
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    // MARK: - PopoverControl
+    func showCurrencyPopup() {
+        let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sbPopUpID") as! CurrencyChangerPopupViewController
+        popOverVC.delegate = self
+        self.addChildViewController(popOverVC)
+        popOverVC.view.frame = self.view.frame
+        self.view.addSubview(popOverVC.view)
+        popOverVC.didMove(toParentViewController: self)
+    }
+    
 
     // MARK: - Table view data source
 
@@ -53,7 +61,7 @@ class CurrencyTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        return CurrencyDataSource.sharedInstance.getCurrencyCount()
+        return currencyDataController.getCurrencyCount()
         
     }
 
@@ -64,9 +72,9 @@ class CurrencyTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "currencyCell", for: indexPath)
 
         
-        let myRowKey = CurrencyDataSource.sharedInstance.getCurrencyList()[indexPath.row] //the dictionary key
+        let myRowKey = currencyDataController.getCurrencyList()[indexPath.row] //the dictionary key
         cell.textLabel?.text = myRowKey
-        let myRowData = CurrencyDataSource.sharedInstance.getCurrencyRates()[myRowKey]! //the dictionary value
+        let myRowData = currencyDataController.getCurrencyRates()[myRowKey]! //the dictionary value
         cell.detailTextLabel?.text = String(describing: myRowData)
         
         
@@ -121,4 +129,15 @@ class CurrencyTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension CurrencyTableViewController : ChooseCurrencyProtocol {
+    func updateCurrency(currency: String){
+        SVProgressHUD.show(withStatus: "Getting Currency Data")
+        currencyDataController.getCurrencyFromFixer(base: currency) {
+            print("Got to callback")
+            self.tableView.reloadData()
+            SVProgressHUD.dismiss()
+        }
+    }
 }

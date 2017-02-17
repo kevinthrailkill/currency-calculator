@@ -8,8 +8,28 @@
 
 import UIKit
 
-class CurrencyChangerPopupViewController: UIViewController {
 
+
+protocol ChooseCurrencyProtocol : NSObjectProtocol {
+    func updateCurrency(currency: String)
+    
+}
+
+
+class CurrencyChangerPopupViewController: UIViewController {
+    
+    
+    /// List of currency choices from the Fixer IO API
+    let currencyChoices : [String] = ["AUD", "BGN", "BRL", "CAD", "CHF", "CNY",
+                                              "CZK", "DKK", "EUR", "GBP", "HKD", "HRK",
+                                              "HUF", "IDR", "ILS", "INR", "JPY", "KRW",
+                                              "MXN", "MYR", "NOK", "NZD", "PHP", "PLN",
+                                              "RON", "RUB", "SEK", "SGD", "THB", "TRY",
+                                              "ZAR"]
+    
+    weak var delegate: ChooseCurrencyProtocol?
+    
+    
     @IBAction func closePopup(_ sender: Any) {
          self.removeAnimate()
         
@@ -64,5 +84,43 @@ class CurrencyChangerPopupViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+}
+
+
+
+// MARK: - Currency Selector Table View
+extension CurrencyChangerPopupViewController : UITableViewDelegate, UITableViewDataSource {
+    
+    // MARK: - Table view data source
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return currencyChoices.count
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "currencySelectCell", for: indexPath)
+     
+     // Configure the cell...
+        cell.textLabel?.text = currencyChoices[indexPath.row]
+     
+        return cell
+     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt
+        indexPath: IndexPath){
+        
+        print(currencyChoices[indexPath.row])
+        self.removeAnimate()
+        self.delegate?.updateCurrency(currency: currencyChoices[indexPath.row])
+        
+    }
 
 }
