@@ -29,11 +29,6 @@ class CurrencyChangerPopupViewController: UIViewController {
     
     weak var delegate: ChooseCurrencyProtocol?
     
-    
-    @IBAction func closePopup(_ sender: Any) {
-         self.removeAnimate()
-        
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

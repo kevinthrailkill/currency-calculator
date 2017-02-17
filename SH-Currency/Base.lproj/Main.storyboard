@@ -70,21 +70,18 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sFc-dW-lv9">
                                 <rect key="frame" x="54" y="63" width="266" height="414"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IfA-Gf-GTS">
-                                        <rect key="frame" x="8" y="8" width="250" height="30"/>
-                                        <state key="normal" title="Choose a Base Currency">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="closePopup:" destination="RbZ-tL-3DC" eventType="touchUpInside" id="DLL-AC-ABT"/>
-                                        </connections>
-                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a Base Currency" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJD-HQ-oab">
+                                        <rect key="frame" x="0.0" y="8" width="266" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.87653882579999998" green="0.87653882579999998" blue="0.87653882579999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="IfA-Gf-GTS" firstAttribute="top" secondItem="sFc-dW-lv9" secondAttribute="topMargin" id="UvA-pN-qEz"/>
-                                    <constraint firstItem="IfA-Gf-GTS" firstAttribute="trailing" secondItem="sFc-dW-lv9" secondAttribute="trailingMargin" id="dtc-7h-pKX"/>
-                                    <constraint firstItem="IfA-Gf-GTS" firstAttribute="leading" secondItem="sFc-dW-lv9" secondAttribute="leadingMargin" id="wmJ-UW-Tek"/>
+                                    <constraint firstItem="QJD-HQ-oab" firstAttribute="leading" secondItem="sFc-dW-lv9" secondAttribute="leading" id="VTt-Cu-QXQ"/>
+                                    <constraint firstItem="QJD-HQ-oab" firstAttribute="top" secondItem="sFc-dW-lv9" secondAttribute="topMargin" id="k5e-UJ-7LR"/>
+                                    <constraint firstAttribute="trailing" secondItem="QJD-HQ-oab" secondAttribute="trailing" id="kf9-1v-CPV"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sEL-2M-4bC">
@@ -118,14 +115,14 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="sFc-dW-lv9" firstAttribute="trailing" secondItem="sEL-2M-4bC" secondAttribute="trailing" id="2Cc-v5-eIE"/>
-                            <constraint firstItem="sFc-dW-lv9" firstAttribute="leading" secondItem="HFI-eS-1m7" secondAttribute="leadingMargin" constant="38" id="3BS-Bh-rJW"/>
-                            <constraint firstItem="ykR-qI-xg4" firstAttribute="top" secondItem="sFc-dW-lv9" secondAttribute="bottom" constant="190" id="AHZ-F7-Su7"/>
-                            <constraint firstItem="sFc-dW-lv9" firstAttribute="centerX" secondItem="HFI-eS-1m7" secondAttribute="centerX" id="Fuz-Tb-O1H"/>
-                            <constraint firstItem="sFc-dW-lv9" firstAttribute="top" secondItem="JPI-mA-CUJ" secondAttribute="bottom" constant="43" id="Rpx-W6-uMI"/>
-                            <constraint firstItem="sEL-2M-4bC" firstAttribute="bottom" secondItem="sFc-dW-lv9" secondAttribute="bottom" id="Ung-TY-Vj2"/>
-                            <constraint firstItem="sEL-2M-4bC" firstAttribute="top" secondItem="JPI-mA-CUJ" secondAttribute="bottom" constant="81" id="Xt0-z6-bse"/>
-                            <constraint firstItem="sFc-dW-lv9" firstAttribute="leading" secondItem="sEL-2M-4bC" secondAttribute="leading" id="kaf-rv-Wn6"/>
+                            <constraint firstItem="sFc-dW-lv9" firstAttribute="trailing" secondItem="sEL-2M-4bC" secondAttribute="trailing" id="4D8-hx-dtm"/>
+                            <constraint firstItem="sFc-dW-lv9" firstAttribute="centerX" secondItem="HFI-eS-1m7" secondAttribute="centerX" id="ZOL-dB-4RL"/>
+                            <constraint firstItem="sFc-dW-lv9" firstAttribute="leading" secondItem="HFI-eS-1m7" secondAttribute="leadingMargin" constant="38" id="crZ-x5-0Iy"/>
+                            <constraint firstItem="sFc-dW-lv9" firstAttribute="top" secondItem="JPI-mA-CUJ" secondAttribute="bottom" constant="43" id="ej7-9Q-Oje"/>
+                            <constraint firstItem="ykR-qI-xg4" firstAttribute="top" secondItem="sEL-2M-4bC" secondAttribute="bottom" constant="190" id="gwU-EF-stR"/>
+                            <constraint firstItem="sFc-dW-lv9" firstAttribute="leading" secondItem="sEL-2M-4bC" secondAttribute="leading" id="mAu-kT-jaX"/>
+                            <constraint firstItem="sEL-2M-4bC" firstAttribute="bottom" secondItem="sFc-dW-lv9" secondAttribute="bottom" id="qgg-FJ-Rsl"/>
+                            <constraint firstItem="sEL-2M-4bC" firstAttribute="top" secondItem="JPI-mA-CUJ" secondAttribute="bottom" constant="81" id="sVv-fr-9IP"/>
                         </constraints>
                     </view>
                 </viewController>

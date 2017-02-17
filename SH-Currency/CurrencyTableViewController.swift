@@ -16,13 +16,7 @@ class CurrencyTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
 
@@ -49,6 +43,11 @@ class CurrencyTableViewController: UITableViewController {
         self.view.addSubview(popOverVC.view)
         popOverVC.didMove(toParentViewController: self)
     }
+    
+    func clickChangeCurrencyButton(button: UIButton) {
+        showCurrencyPopup()
+    }
+    
     
 
     // MARK: - Table view data source
@@ -131,11 +130,21 @@ class CurrencyTableViewController: UITableViewController {
 
 }
 
+
+// MARK: - Protocol Updates the current currency rates being displayed in the table
 extension CurrencyTableViewController : ChooseCurrencyProtocol {
     func updateCurrency(currency: String){
         SVProgressHUD.show(withStatus: "Getting Currency Data")
         currencyDataController.getCurrencyFromFixer(base: currency) {
             print("Got to callback")
+            
+            let button =  UIButton(type: .custom)
+            button.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
+            button.backgroundColor = UIColor.black
+            button.setTitle(self.currencyDataController.getBaseCurrency(), for: .normal)
+            button.addTarget(self, action: #selector(self.clickChangeCurrencyButton), for: .touchUpInside)
+            self.navigationItem.titleView = button
+            
             self.tableView.reloadData()
             SVProgressHUD.dismiss()
         }

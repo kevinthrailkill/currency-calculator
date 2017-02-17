@@ -41,28 +41,28 @@ class CurrencyDataSource: NSObject {
         if(currentCurrency != nil){
             return currentCurrency!.getcurrencyRatesCount()
         }
-        
         return 0
     }
     
     func getCurrencyList() -> [String] {
-        
         if(currentCurrency != nil){
             return currentCurrency!.getCurrencyList()
         }
-        
         return [String]()
-       
     }
     
     func getCurrencyRates() -> Dictionary<String, NSNumber> {
-        
         if(currentCurrency != nil){
             return currentCurrency!.getcurrencyRates()
         }
-        
         return [String: NSNumber]()
-        
+    }
+    
+    func getBaseCurrency() -> String {
+        if(currentCurrency != nil){
+            return currentCurrency!.getBaseCurrency()
+        }
+        return ""
     }
 
 
