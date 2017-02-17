@@ -38,6 +38,8 @@ class CurrencyCalculatorViewController: UIViewController {
         super.viewDidLoad()
         setUpTextFields()
         
+        self.navigationController?.navigationBar.tintColor = UIColor.black
+        
     }
     
     override func didReceiveMemoryWarning() {
