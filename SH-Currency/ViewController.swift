@@ -12,6 +12,16 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        AFCurrencyWrapper.requestGETURL("USD", success: {
+            (CurrencyRates) -> Void in
+            print(CurrencyRates)
+        }) {
+            (error) -> Void in
+            print(error)
+        }
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 

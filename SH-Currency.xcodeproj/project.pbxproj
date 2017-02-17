@@ -13,6 +13,8 @@
 		19E3E4861E56078700626DBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19E3E4851E56078700626DBE /* Assets.xcassets */; };
 		19E3E4891E56078700626DBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19E3E4871E56078700626DBE /* LaunchScreen.storyboard */; };
 		19E3E4941E56078700626DBE /* SH_CurrencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E3E4931E56078700626DBE /* SH_CurrencyTests.swift */; };
+		19E3E49F1E56AB7100626DBE /* CurrencyRates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E3E49E1E56AB7100626DBE /* CurrencyRates.swift */; };
+		19E3E4A11E56AE8B00626DBE /* AFCurrencyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E3E4A01E56AE8B00626DBE /* AFCurrencyWrapper.swift */; };
 		B107AB6BB576D4DA67EA2086 /* Pods_SH_CurrencyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3228F7E4857530340E77ABCC /* Pods_SH_CurrencyTests.framework */; };
 		FBCC5D1BF4C93B3AD7127CE9 /* Pods_SH_Currency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259CE68E323BBF02EE34722 /* Pods_SH_Currency.framework */; };
 /* End PBXBuildFile section */
@@ -38,6 +40,8 @@
 		19E3E48F1E56078700626DBE /* SH-CurrencyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SH-CurrencyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		19E3E4931E56078700626DBE /* SH_CurrencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SH_CurrencyTests.swift; sourceTree = "<group>"; };
 		19E3E4951E56078700626DBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		19E3E49E1E56AB7100626DBE /* CurrencyRates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyRates.swift; sourceTree = "<group>"; };
+		19E3E4A01E56AE8B00626DBE /* AFCurrencyWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFCurrencyWrapper.swift; sourceTree = "<group>"; };
 		32169C404FA9DA0CBF546DC8 /* Pods-SH-Currency.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SH-Currency.release.xcconfig"; path = "Pods/Target Support Files/Pods-SH-Currency/Pods-SH-Currency.release.xcconfig"; sourceTree = "<group>"; };
 		3228F7E4857530340E77ABCC /* Pods_SH_CurrencyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SH_CurrencyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7259CE68E323BBF02EE34722 /* Pods_SH_Currency.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SH_Currency.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +93,8 @@
 		19E3E47D1E56078700626DBE /* SH-Currency */ = {
 			isa = PBXGroup;
 			children = (
+				19E3E49E1E56AB7100626DBE /* CurrencyRates.swift */,
+				19E3E4A01E56AE8B00626DBE /* AFCurrencyWrapper.swift */,
 				19E3E47E1E56078700626DBE /* AppDelegate.swift */,
 				19E3E4801E56078700626DBE /* ViewController.swift */,
 				19E3E4821E56078700626DBE /* Main.storyboard */,
@@ -331,6 +337,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19E3E49F1E56AB7100626DBE /* CurrencyRates.swift in Sources */,
+				19E3E4A11E56AE8B00626DBE /* AFCurrencyWrapper.swift in Sources */,
 				19E3E4811E56078700626DBE /* ViewController.swift in Sources */,
 				19E3E47F1E56078700626DBE /* AppDelegate.swift in Sources */,
 			);
@@ -542,6 +550,7 @@
 				19E3E49A1E56078700626DBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		19E3E49B1E56078700626DBE /* Build configuration list for PBXNativeTarget "SH-CurrencyTests" */ = {
 			isa = XCConfigurationList;
@@ -550,6 +559,7 @@
 				19E3E49D1E56078700626DBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
