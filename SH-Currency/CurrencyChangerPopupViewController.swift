@@ -19,14 +19,7 @@ protocol ChooseCurrencyProtocol : NSObjectProtocol {
 
 class CurrencyChangerPopupViewController: UIViewController {
     
-    
-    /// List of currency choices from the Fixer IO API
-    let currencyChoices : [String] = ["AUD", "BGN", "BRL", "CAD", "CHF", "CNY",
-                                      "CZK", "DKK", "EUR", "GBP", "HKD", "HRK",
-                                      "HUF", "IDR", "ILS", "INR", "JPY", "KRW",
-                                      "MXN", "MYR", "NOK", "NZD", "PHP", "PLN",
-                                      "RON", "RUB", "SEK", "SGD", "THB", "TRY",
-                                      "USD", "ZAR"]
+    let currencyCodes : CurrencyCountryCodes = CurrencyCountryCodes()
     
     weak var delegate: ChooseCurrencyProtocol?
     
@@ -37,6 +30,8 @@ class CurrencyChangerPopupViewController: UIViewController {
         self.showAnimate()
 
     }
+    
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -85,7 +80,7 @@ extension CurrencyChangerPopupViewController : UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return currencyChoices.count
+        return currencyCodes.getCountryCodeCount()
         
     }
     
@@ -93,7 +88,7 @@ extension CurrencyChangerPopupViewController : UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "currencySelectCell", for: indexPath)
      
      // Configure the cell...
-        cell.textLabel?.text = currencyChoices[indexPath.row]
+        cell.textLabel?.text = currencyCodes.getCountryCode(location: indexPath.row)
      
         return cell
      }
@@ -101,9 +96,8 @@ extension CurrencyChangerPopupViewController : UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt
         indexPath: IndexPath){
         
-        print(currencyChoices[indexPath.row])
         self.removeAnimate()
-        self.delegate?.updateCurrency(currency: currencyChoices[indexPath.row])
+        self.delegate?.updateCurrency(currency: currencyCodes.getCountryCode(location: indexPath.row))
         
     }
 
