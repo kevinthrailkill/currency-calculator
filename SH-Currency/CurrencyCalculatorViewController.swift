@@ -11,7 +11,7 @@ import UIKit
 class CurrencyCalculatorViewController: UIViewController {
     
     
-    let currencyDataController = CurrencyDataSource.sharedInstance
+    var currencyCalc : CurrencyCalculations?
     
     @IBOutlet weak var selectedCurrencyTextField: UITextField!
     @IBOutlet weak var baseCurrencyTextField: UITextField!
@@ -27,10 +27,12 @@ class CurrencyCalculatorViewController: UIViewController {
         
         //Get exchange amount last character in string isnt a period
         if sender.text!.characters.last != "." {
-            currencyDataController.calulateExchange(exchangeAmount: sender.text!) {
-                (result: String) in
-                self.selectedCurrencyTextField.text = result
+                        
+            if let myDouble = Double(sender.text!) {
+                let calculatedValue = currencyCalc!.getCurrencyAmount(baseCur: NSNumber(value: myDouble))
+                self.selectedCurrencyTextField.text = String(format: "%10.2f", calculatedValue.floatValue)
             }
+
         }
     }
     
@@ -55,25 +57,16 @@ class CurrencyCalculatorViewController: UIViewController {
         baseCurrencyTextField.becomeFirstResponder()
         baseCurrencyTextField.delegate = self
         baseCurrencyTextField.text = "1.0"
-        baseLabel.text = currencyDataController.getBaseCurrency()
         
-        for (key, value) in currencyDataController.getSelectedCurrency() {
-            selectedCurrencyTextField.text = String(format: "%10.2f", value.doubleValue)
-            selectedLabel.text = key
-            break
-        }
+        let baseCur = self.currencyCalc!.getBaseCurrency()
+        baseLabel.text = baseCur.getCurrencyString()
+        
+        let selCur = self.currencyCalc!.getSelectedCurrency()
+        selectedCurrencyTextField.text = String(format: "%10.2f", selCur.getCurrencyRate().doubleValue)
+        selectedLabel.text = selCur.getCurrencyString()
+        
     }
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
 
@@ -83,7 +76,7 @@ extension CurrencyCalculatorViewController : UITextFieldDelegate {
     
     // Function used to only allow one period in textfield at a time
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
+
         let existingTextHasDecimalSeparator = textField.text?.range(of: ".")
         let replacementTextHasDecimalSeparator = string.range(of: ".")
         if existingTextHasDecimalSeparator != nil && replacementTextHasDecimalSeparator != nil {
