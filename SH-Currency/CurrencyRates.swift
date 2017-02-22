@@ -14,7 +14,10 @@ import SwiftyJSON
 class CurrencyRates: NSObject {
     
     private var baseCurrency: String?
+    private var newBaseCurrency: Rate?
+    private var selectedCurrency: Rate?
     private var currencyRates: Dictionary<String, NSNumber>?
+    private var currencyRatesArray: [Rate]?
     
     private var currencyList:[String] {
         get{
@@ -29,12 +32,30 @@ class CurrencyRates: NSObject {
         
         self.baseCurrency = result["base"].rawString()!
         self.currencyRates = [String:NSNumber]()
+        self.currencyRatesArray = [Rate]()
+        
         
         for item in result["rates"].dictionaryValue {
+            
+            let newRate = Rate.init(cs: item.key, cr: item.value.numberValue)
+            self.currencyRatesArray?.append(newRate)
+            
             let value = item.value.numberValue
             self.currencyRates?[item.key] = value
         }
     }
+    
+    
+    // MARK: - Setting the base and selected currency
+    
+    func setBaseCurrency(baseCur: String){
+        self.newBaseCurrency = Rate.init(cs: baseCur, cr: NSNumber.init(value: 1.0))
+    }
+    
+    func setselectedCurrency(selCur: String, selRate: NSNumber){
+        self.selectedCurrency = Rate.init(cs: selCur, cr: selRate)
+    }
+    
     
     
     // MARK: - Class getters
@@ -52,8 +73,10 @@ class CurrencyRates: NSObject {
     }
     
     func getcurrencyRatesCount() -> Int {
-        return self.currencyRates!.count
+        return self.currencyRatesArray!.count
+       // return self.currencyRates!.count
     }
+    
     
     
 }

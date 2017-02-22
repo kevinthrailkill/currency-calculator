@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19DF5A7D1E5D43CE0063E0AA /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DF5A7C1E5D43CE0063E0AA /* Rate.swift */; };
 		19E3E47F1E56078700626DBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E3E47E1E56078700626DBE /* AppDelegate.swift */; };
 		19E3E4841E56078700626DBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19E3E4821E56078700626DBE /* Main.storyboard */; };
 		19E3E4861E56078700626DBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19E3E4851E56078700626DBE /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19DF5A7C1E5D43CE0063E0AA /* Rate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
 		19E3E47B1E56078700626DBE /* SH-Currency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SH-Currency.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		19E3E47E1E56078700626DBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19E3E4831E56078700626DBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				19E3E49E1E56AB7100626DBE /* CurrencyRates.swift */,
+				19DF5A7C1E5D43CE0063E0AA /* Rate.swift */,
 				19E3E4AA1E56DB7D00626DBE /* CurrencyDataSource.swift */,
 				19E3E4A41E56C06900626DBE /* CurrencyCalculations.swift */,
 				19E3E4A01E56AE8B00626DBE /* AFCurrencyWrapper.swift */,
@@ -355,6 +358,7 @@
 				19E3E4AD1E57696500626DBE /* CurrencyChangerPopupViewController.swift in Sources */,
 				19E3E4A11E56AE8B00626DBE /* AFCurrencyWrapper.swift in Sources */,
 				19E3E4B11E57800500626DBE /* CurrencyCalculatorViewController.swift in Sources */,
+				19DF5A7D1E5D43CE0063E0AA /* Rate.swift in Sources */,
 				19E3E4A71E56C45300626DBE /* CurrencyTableViewController.swift in Sources */,
 				19E3E47F1E56078700626DBE /* AppDelegate.swift in Sources */,
 			);

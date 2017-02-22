@@ -16,9 +16,6 @@ import SwiftyJSON
 
 class AFCurrencyWrapper: NSObject {
     
-    
-    
-    
     /// <#Description#>
     ///
     /// - Parameters:
